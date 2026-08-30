@@ -1,1 +1,2 @@
-29/8/26 : finished setting up environment variables usin pom(Project object model).xml and maven, finished installing dependancy apache pdf box for text extraction using maven 
+29/8/26 : finished setting up environment variables usin pom(Project object model).xml and maven, finished installing dependancy apache pdf box for text extraction using maven
+Hi thevaa
