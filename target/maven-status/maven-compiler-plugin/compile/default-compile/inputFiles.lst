@@ -7,11 +7,15 @@ C:\Users\harsh\hydrann\src\main\java\com\hydrann\api\SearchApi.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\api\SearchCli.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\controller\DegradationTrigger.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\controller\HydraController.java
+C:\Users\harsh\hydrann\src\main\java\com\hydrann\embedding\MiniLMEmbedder.java
+C:\Users\harsh\hydrann\src\main\java\com\hydrann\embedding\Tokenizertest.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\evaluation\BenchmarkRunner.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\evaluation\FitnessEvaluator.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\evaluation\GroundTruthSampler.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\ingestion\Chunker.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\ingestion\EmbeddingClient.java
+C:\Users\harsh\hydrann\src\main\java\com\hydrann\ingestion\ExtractedPage.java
+C:\Users\harsh\hydrann\src\main\java\com\hydrann\ingestion\ExtractedPdf.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\ingestion\PdfExtractor.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\Main.java
 C:\Users\harsh\hydrann\src\main\java\com\hydrann\persistence\IndexLoader.java

@@ -1,2 +1,3 @@
 29/8/26 : finished setting up environment variables usin pom(Project object model).xml and maven, finished installing dependancy apache pdf box for text extraction using maven 
 30/8/26 : finished pdf extraction using apache pdf box by splitting pdf page by page and storing it as array list of ExtractedPage along with meta data stored as object ExtractedPdf
+9/9/26 : finished embedding pipeline in java using a tokenizer from deep java library to remove python dependency  

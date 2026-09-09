@@ -1,0 +1,8 @@
+com\hydrann\Main.class
+com\hydrann\annheads\LshHead.class
+com\hydrann\ingestion\Chunker.class
+com\hydrann\ingestion\PdfExtractor.class
+com\hydrann\ingestion\ExtractedPage.class
+com\hydrann\embedding\Tokenizertest.class
+com\hydrann\ingestion\ExtractedPdf.class
+com\hydrann\embedding\MiniLMEmbedder.class

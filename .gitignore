@@ -1,0 +1,95 @@
+# =========================
+# Java / Maven
+# =========================
+
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+
+# =========================
+# IDE - VS Code
+# =========================
+
+.vscode/
+*.code-workspace
+
+
+# =========================
+# IDE - IntelliJ / Eclipse
+# =========================
+
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+
+# =========================
+# Java / Build
+# =========================
+
+out/
+bin/
+
+
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+*.pyo
+
+.venv/
+venv/
+env/
+
+.pytest_cache/
+.mypy_cache/
+
+
+# =========================
+# HydraANN generated files
+# =========================
+
+python_embedding.txt
+java_embedding.txt
+
+# Logs
+*.log
+
+
+# =========================
+# OS files
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# =========================
+# Environment / Secrets
+# =========================
+
+.env
+.env.*
+!.env.example
+
+
+# =========================
+# Large ML model files
+# =========================
+
+# Ignore downloaded models by default
+models/
+
+# If you later decide to commit model metadata/config,
+# explicitly force-add individual files with git add -f
