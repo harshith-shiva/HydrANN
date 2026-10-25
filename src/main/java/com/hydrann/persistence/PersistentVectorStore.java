@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Arrays;
+
 public final class PersistentVectorStore
         implements VectorStore, AutoCloseable {
 
@@ -25,6 +27,7 @@ public final class PersistentVectorStore
     private final VectorFile vectorFile;
     private final MetadataFile metadataFile;
     private final List<VectorMetadata> metadata;
+    private volatile float[][] vectorCache;   // index = vector id, includes deactivated vectors
 
     private boolean closed;
 
@@ -74,6 +77,11 @@ public final class PersistentVectorStore
 
             this.vectorFile = openedVectorFile;
             this.metadata = new ArrayList<>(loadedMetadata);
+            float[][] loaded = new float[Math.toIntExact(openedVectorFile.getCount())][];
+            for (int i = 0; i < loaded.length; i++) {
+                loaded[i] = openedVectorFile.read(i);
+            }
+            this.vectorCache = loaded;
 
         } catch (IOException | RuntimeException e) {
             openedVectorFile.close();
@@ -106,10 +114,9 @@ public final class PersistentVectorStore
         }
     }
     @Override
-public synchronized int idLimit() {
-    ensureOpen();
-    return Math.toIntExact(vectorFile.getCount());
-}
+    public int idLimit() {
+        return vectorCache.length;
+    }
 
 @Override
 public synchronized boolean isActive(int id) {
@@ -118,13 +125,8 @@ public synchronized boolean isActive(int id) {
 }
 
 @Override
-public synchronized float[] vector(int id) {
-    ensureOpen();
-    try {
-        return vectorFile.read(id);
-    } catch (IOException e) {
-        throw new IllegalStateException("Could not read vector " + id, e);
-    }
+public float[] vector(int id) {
+    return vectorCache[id];     // callers must not modify the returned array
 }
 
 @Override
@@ -247,6 +249,12 @@ public synchronized ChunkEmbedding get(int id) {
 
         metadata.clear();
         metadata.addAll(updated);
+        float[][] old = vectorCache;
+        float[][] next = Arrays.copyOf(old, old.length + embeddings.size());
+        for (int i = 0; i < embeddings.size(); i++) {
+            next[old.length + i] = embeddings.get(i).getEmbedding().clone();
+        }
+        vectorCache = next;
     }
 
     /**

@@ -29,11 +29,11 @@ import java.util.*;
  *   <li>Memory estimate: centroid storage + pointer lists.</li>
  * </ul>
  */
-public class IvfHead implements ANNHead {
+public class IvfHead implements ANNHead,Tunable {
 
     private final VectorStore store;
     private final int nClusters;
-    private final int nProbe;
+    // private final int nProbe;
     private final int maxKmeansIter;
     private final long seed;
 
@@ -41,6 +41,17 @@ public class IvfHead implements ANNHead {
     private float[][] centroids;                        // [nClusters][dim]
     private List<List<Integer>> invertedLists;          // invertedLists.get(c) = list of store ids
     private int dim = -1;
+
+    private volatile int nProbe;         // was: private final int nProbe;
+
+// (c)
+    @Override public int getEffort()  { return nProbe; }
+    @Override public void setEffort(int effort) {
+        this.nProbe = Math.max(1, Math.min(nClusters, effort));
+    }
+    @Override public int minEffort()  { return 1; }
+    @Override public int maxEffort()  { return nClusters; }
+    @Override public String effortName() { return "nProbe"; }
 
     // -------------------------------------------------------------------------
     // Constructors

@@ -44,7 +44,7 @@ import java.util.*;
  *   <li>Returns {@code List<Neighbor>} (highest score first).</li>
  * </ul>
  */
-public class HnswHead implements ANNHead {
+public class HnswHead implements ANNHead,Tunable {
 
     // -------------------------------------------------------------------------
     // Configuration
@@ -60,12 +60,23 @@ public class HnswHead implements ANNHead {
     private final int efConstruction;
 
     /** Beam width used at query time (controls recall vs speed). */
-    private final int efSearch;
+    // private final int efSearch;
 
     /** Geometric distribution multiplier: {@code mL = 1 / ln(M)}. */
     private final double mL;
 
     private final Random rng;
+
+    private volatile int efSearch;        // was: private final int efSearch;
+
+// (c) add anywhere in the class
+    @Override public int getEffort()  { return efSearch; }
+    @Override public void setEffort(int effort) {
+        this.efSearch = Math.max(minEffort(), Math.min(maxEffort(), effort));
+    }
+    @Override public int minEffort()  { return 5; }
+    @Override public int maxEffort()  { return 500; }
+    @Override public String effortName() { return "efSearch"; }
 
     // -------------------------------------------------------------------------
     // Graph state
